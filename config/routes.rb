@@ -2,7 +2,7 @@ DemoApp::Application.routes.draw do
  # match '/', to: 'static_pages#home'
 
 
- resources :microposts
+ resources :microposts, only: [:create, :destroy]
 
  resources :sessions, only: [:new, :create, :destroy]
 
