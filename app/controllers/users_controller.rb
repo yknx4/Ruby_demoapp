@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:edit, :update]
+  before_filter :correct_user,   only: [:edit, :update]
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+   @users = User.paginate(page: params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -62,6 +64,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        sign_in @user
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -81,5 +84,21 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+
+  private
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    #redirect_to(root_path) unless current_user?(@user)
+    redirect_to @user unless current_user?(@user)
   end
 end
