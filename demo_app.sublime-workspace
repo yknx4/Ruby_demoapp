@@ -15,7 +15,7 @@
 			"file": "app/models/micropost.rb",
 			"settings":
 			{
-				"buffer_size": 132,
+				"buffer_size": 391,
 				"line_ending": "Unix"
 			}
 		}
@@ -100,15 +100,15 @@
 					"file": "app/models/micropost.rb",
 					"settings":
 					{
-						"buffer_size": 132,
+						"buffer_size": 391,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								127,
-								127
+								0,
+								0
 							]
 						],
 						"settings":
